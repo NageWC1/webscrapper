@@ -8,7 +8,14 @@ function SearchBody() {
             className="search-element"
           />
           <button className="search-btn">Get</button>
+          <div className="custom-gap">
+
+          </div>
+          <div>
+            <span className="result-text"> The Result Will Be Here...</span>
+          </div>
         </div>
+
     </>
   );
 }

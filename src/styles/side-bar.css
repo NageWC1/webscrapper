@@ -35,3 +35,13 @@ color: white;
   background-color: #304a83;
   color: whitesmoke;
 }
+
+.custom-gap{
+  height: 15vh;
+}
+.result-text{
+  margin: 0 0 0 3.5rem;
+
+color: #87888a;
+font-size: 2rem;
+}
