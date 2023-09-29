@@ -23,6 +23,7 @@
 .nav-links-wrapper ul li {
   display: inline-block;
   padding: 0 1rem;
+  font-size: 1.1rem;
 }
 
 .brand-log-text {

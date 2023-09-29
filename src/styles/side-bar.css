@@ -9,4 +9,29 @@
 color: white;
   list-style: none;
   margin: 2rem 0 0 0;
+  font-weight: bolder;
+}
+
+
+/* search body */
+.search-body-wrapper{
+  padding: 4rem 0 ;
+  margin: 0 auto;
+}
+
+.search-element{
+  width: 25vw;
+  padding: 1rem;
+  border: #87888a solid 1px;
+  border-radius: 15px;
+}
+
+.search-btn{
+  margin: 0 2rem;
+  width: 6vw;
+  padding: 1rem;
+  border: #87888a solid 1px;
+  border-radius: 15px;
+  background-color: #304a83;
+  color: whitesmoke;
 }
