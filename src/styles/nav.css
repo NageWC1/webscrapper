@@ -1,0 +1,31 @@
+.nav-wrapper {
+  background-color: #162D5D;
+  height: 13vh;
+}
+.brand-log-text {
+    padding: 1rem 0 0 0;
+    font-size: 1.5rem;
+  display: inline-block;
+  color: whitesmoke;
+}
+.nav-links-wrapper {
+    padding: 1rem 0 0 0;
+  display: inline-block;
+  margin: 0 0 0 50rem;
+}
+
+.nav-links-wrapper ul {
+  list-style: none;
+  color: whitesmoke;
+  font-weight: bold;
+}
+
+.nav-links-wrapper ul li {
+  display: inline-block;
+  padding: 0 1rem;
+}
+
+.brand-log-text {
+  padding: 0 0 0 2rem;
+  font-weight: bolder;
+}
