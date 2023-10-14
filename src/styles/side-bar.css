@@ -68,3 +68,12 @@
     padding: 0.8rem;
   }
 }
+
+@media (min-width: 1024px) {
+  .side-bar-wrapper ul li {
+    color: white;
+    list-style: none;
+    margin-left: 1rem;
+    font-size:1.2rem ;
+  }
+}
