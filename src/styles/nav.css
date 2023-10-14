@@ -1,6 +1,7 @@
 .nav-wrapper {
   background-color: #162D5D;
   height: 13vh;
+  width: 100%;
 }
 .brand-log-text {
     padding: 1rem 0 0 0;
@@ -30,3 +31,4 @@
   padding: 0 0 0 2rem;
   font-weight: bolder;
 }
+

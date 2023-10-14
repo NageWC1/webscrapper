@@ -1,0 +1,30 @@
+@media (min-width: 728px) {
+  .brand-log-text {
+    padding: 0.5rem 0 0 1rem;
+  }
+  .nav-links-wrapper {
+    padding: 0.5rem 0 0 0;
+    display: inline-block;
+    margin: 0 0 0 15rem;
+  }
+  .nav-links-wrapper ul li {
+    font-size: 1rem;
+  }
+
+}
+
+
+@media (min-width: 1024px) {
+  .brand-log-text {
+    padding: 0.5rem 0 0 1.8rem;
+  }
+  .nav-links-wrapper {
+    padding: 0.5rem 0 0 0;
+    display: inline-block;
+    margin: 0 0 0 50rem;
+  }
+  .nav-links-wrapper ul li {
+    font-size: 1.2rem;
+  }
+
+}
