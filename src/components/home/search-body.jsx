@@ -3,19 +3,19 @@ function SearchBody() {
   return (
     <>
       <div className="search-body-wrapper">
+        <form action="post">
           <input
             placeholder="Enter the web link.... https://www/example.com"
             className="search-element"
           />
           <button className="search-btn">Get</button>
-          <div className="custom-gap">
+        </form>
 
-          </div>
-          <div>
-            <span className="result-text"> The Result Will Be Here...</span>
-          </div>
+        <div className="custom-gap"></div>
+        <div>
+          <span className="result-text"> The Result Will Be Here...</span>
         </div>
-
+      </div>
     </>
   );
 }

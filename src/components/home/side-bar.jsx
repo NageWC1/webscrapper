@@ -3,7 +3,7 @@ function SideBar() {
   return (
     <>
       <div className="side-bar-wrapper">
-        <div style={{height:'2vh'}}>
+        <div className="side-bar-top-height">
 
         </div>
           <ul className="side-bar-list">

@@ -1,7 +1,6 @@
 .side-bar-wrapper {
-  height: 87vh;
+  height: 88vh;
   width: 15%;
-
   background-color: #162d5d;
 }
 
@@ -46,6 +45,10 @@
 }
 
 @media (min-width: 728px) {
+  .side-bar-top-height{
+    height: 1.5vh;
+  }
+
   .side-bar-wrapper ul li {
     color: white;
     list-style: none;
@@ -69,11 +72,19 @@
   }
 }
 
+
+
 @media (min-width: 1024px) {
+  .side-bar-wrapper{
+  margin-top: -0.08vh;
+
+  }
+  .side-bar-top-height{
+    height: 1.5vh;
+  }
   .side-bar-wrapper ul li {
-    color: white;
-    list-style: none;
-    margin-left: 1rem;
-    font-size:1.2rem ;
+    
+    margin-left: -1rem;
+    font-size:1.25rem ;
   }
 }
