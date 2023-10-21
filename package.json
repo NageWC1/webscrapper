@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "bootstrap": "^5.3.2",
     "keywords": "^0.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -15,7 +16,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start-flask":"cd api && flask run",
+    "start-flask": "cd api && flask --app app.py --debug run",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -38,5 +39,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy":"http://127.0.0.1:5000/"
+  "proxy": "http://127.0.0.1:5000/"
 }
