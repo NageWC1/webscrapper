@@ -1,5 +1,6 @@
 import "../../styles/nav.css";
 import "../../styles/nav-responsiveness.css";
+
 function NavBar() {
   return (
     <>
