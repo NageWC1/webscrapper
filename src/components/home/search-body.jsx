@@ -1,58 +1,38 @@
 import "../../styles/side-bar.css";
 import { useState, useEffect } from "react";
 function SearchBody() {
-  const [initialData, setInitialData] = useState([{}]);
+  const [link, setInitialData] = useState([{}]);
+  const [Data_table, setTable] = useState({__html: ""});
 
   useEffect(() => {
-    var responseClone; // 1
-    fetch("/api")
-      .then(function (response) {
-        responseClone = response.clone(); // 2
-        return response.json();
-      })
-      .then(
-        function (data) {
-          setInitialData(data)
-        },
-        function (rejectionReason) {
-          // 3
-          console.log(
-            "Error parsing JSON from response:",
-            rejectionReason,
-            responseClone
-          ); // 4
-          responseClone
-            .text() // 5
-            .then(function (bodyText) {
-              console.log(
-                "Received the following instead of valid JSON:",
-                bodyText
-              ); // 6
-            });
-        }
-      );
+    getTable()
   },[]);
 
+  const getTable =(link) =>{
+    var responseClone; // 1
+    // let check with the table and see how its working 
+    // https://www.youtube.com/watch?v=msEmUtYqVV0
+    
+  }
   
   return (
     <>
       <div className="search-body-wrapper">
-        <form action="/" method="post">
+        <form>
           <input
             placeholder="Enter the web link.... https://www/example.com"
             className="search-element"
             name="link"
+            onChange={(e)=>setInitialData(e.target.value)}
           />
-          <button className="search-btn" type="submit" value="sumbmit">Get - a</button>
+          <button className="search-btn"  onClick={getTable}>Get - a</button>
         </form>
 
         <div className="custom-gap"></div>
         <div>
-          {(typeof initialData.member === "undefined")?(
-          <h1>Data Loading</h1>
-          ):(
-              <span className="result-text">{initialData} </span>
-          )}
+          <div>
+         {/* {Data_table} */}
+          </div>
           
         </div>
       </div>
