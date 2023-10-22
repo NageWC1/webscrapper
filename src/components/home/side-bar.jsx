@@ -7,9 +7,9 @@ function SideBar() {
 
         </div>
           <ul className="side-bar-list">
-            <li>Details</li>
-            <li>Analytics</li>
-            <li>Charts</li>
+            <li><a>Details</a></li>
+            <li><a>Analytics</a></li>
+            <li><a>Download</a></li>
           </ul>
       </div>
     </>
