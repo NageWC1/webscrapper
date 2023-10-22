@@ -12,7 +12,7 @@ function TableComponent({ data }) {
 
   return (
     <div>
-      <table className='table'>
+      <table className='table table-striped'>
         <thead className='thead-dark'>
           <tr>
             {headers.map((header, index) => (
