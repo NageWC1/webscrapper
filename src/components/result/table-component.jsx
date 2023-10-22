@@ -14,7 +14,7 @@ function TableComponent({ data }) {
 
   return (
     <div>
-      <span>To Download Cleaned CSV or Excel files of extracted table, click the buttons below</span>
+      <span className='description-text-for-download-buttns'>To Download Cleaned CSV or Excel files of extracted table, click the buttons below</span>
       <div className='p-2 donwload-btn-wrapper'>
         
         <a href={csvF} download="data.csv"><button className='btn btn-success m-2'>Download CSV</button></a>
