@@ -59,7 +59,8 @@ def data_cleaning(dataframe):
     dataframe[string_columns] = dataframe[string_columns].apply(lambda x: x.str.strip() if x.dtype == "object" else x)
     
     # Add more data cleaning steps as needed
-    dataframe.to_csv('./data/Biodata.csv', index=False)
+    dataframe.to_csv('./../src/components/result/data.csv', index=False)
+    dataframe.to_excel('./../src/components/result/data.xlsx', index=False)
     return dataframe
     
     

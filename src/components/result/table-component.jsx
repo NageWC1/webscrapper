@@ -1,4 +1,6 @@
 import React from 'react';
+import csvF from '../result/data.csv'
+import excelF from '../result/data.xlsx'
 
 function TableComponent({ data }) {
  console.log('called')
@@ -12,6 +14,12 @@ function TableComponent({ data }) {
 
   return (
     <div>
+      <span>To Download Cleaned CSV or Excel files of extracted table, click the buttons below</span>
+      <div className='p-2 donwload-btn-wrapper'>
+        
+        <a href={csvF} download="data.csv"><button className='btn btn-success m-2'>Download CSV</button></a>
+        <a href={excelF} download="data.xlsx"><button className='btn btn-primary m-2'>Download Excel</button></a>
+      </div>
       <table className='table table-striped'>
         <thead className='thead-dark'>
           <tr>

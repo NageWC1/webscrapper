@@ -9,7 +9,6 @@ function SideBar() {
           <ul className="side-bar-list">
             <li><a>Details</a></li>
             <li><a>Analytics</a></li>
-            <li><a>Download</a></li>
           </ul>
       </div>
     </>
