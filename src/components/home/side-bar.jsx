@@ -1,4 +1,5 @@
 import "../../styles/side-bar.css";
+import {Link} from 'react-router-dom'
 function SideBar() {
   return (
     <>
@@ -7,8 +8,8 @@ function SideBar() {
 
         </div>
           <ul className="side-bar-list">
-            <li><a>Details</a></li>
-            <li><a>Analytics</a></li>
+            <li><Link to="/details"className="sidebar-link">Details</Link></li>
+            <li><Link className="sidebar-link">Analytics</Link></li>
           </ul>
       </div>
     </>

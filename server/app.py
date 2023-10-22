@@ -62,7 +62,49 @@ def data_cleaning(dataframe):
     dataframe.to_csv('./../src/components/result/data.csv', index=False)
     dataframe.to_excel('./../src/components/result/data.xlsx', index=False)
     return dataframe
-    
+
+@app.route('/data_types', methods=['GET'])
+def identify_data_types_auto( threshold=0.9):
+    dataframe = pd.read_csv('./../src/components/result/data.csv')
+    data_types_list = []
+    data_types_list.append(["Column Names", "Data Type"])
+    for column in dataframe.columns:
+        column_data = dataframe[column]
+
+        # Initialize counters for each data type
+        num_int = 0
+        num_float = 0
+        num_str = 0
+
+        # Analyze the content of the column
+        for value in column_data:
+            if pd.notna(value):
+                if str(value).replace(".", "").isdigit():
+                    if "." in str(value):
+                        num_float += 1
+                    else:
+                        num_int += 1
+                else:
+                    num_str += 1
+
+        # Calculate the ratio of non-null values that match each data type
+        ratio_int = num_int / len(column_data)
+        ratio_float = num_float / len(column_data)
+        ratio_str = num_str / len(column_data)
+
+        # Determine the most likely data type for the column based on the threshold
+        if ratio_int >= threshold:
+            data_type = 'int'
+        elif ratio_float >= threshold:
+            data_type = 'float'
+        elif ratio_str >= threshold:
+            data_type = 'string'
+        else:
+            data_type = 'mixed'
+
+        data_types_list.append([column, data_type])
+
+    return jsonify({'data_types_list': data_types_list})   
     
 if __name__ == "__main__":
     app.run()

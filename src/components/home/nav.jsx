@@ -1,6 +1,6 @@
 import "../../styles/nav.css";
 import "../../styles/nav-responsiveness.css";
-
+import {Link} from'react-router-dom'
 function NavBar() {
   return (
     <>
@@ -13,9 +13,9 @@ function NavBar() {
         </div>
         <div className="nav-links-wrapper">
           <ul>
-            <li>Home</li>
-            <li>About</li>
-            <li>Service</li>
+              <li><Link to="/"className="sidebar-link">Home</Link></li>
+              <li><Link to="/details"className="sidebar-link">About</Link></li>
+              <li><Link to="/details"className="sidebar-link">Service</Link></li>
           </ul>
         </div>
       </div>
