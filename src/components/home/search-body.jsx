@@ -2,16 +2,18 @@ import "../../styles/side-bar.css";
 import { useState, useEffect } from "react";
 import apiServices from "../../api-services/api-services";
 import TableComponent from "../result/table-component";
+import MultipleTableShow from "../result/multiple-table-component";
 function SearchBody() {
   const [link, setLink] = useState('');
   const [tableData, setTableData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [tables, setTables] = useState([]); // State to store the scraped tables
 
   const handleScrape = () => {
     setLoading(true);
 
     // Make a POST request to your Flask server with the link
-    fetch('/', {
+    fetch('/scrape_tables', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -20,7 +22,8 @@ function SearchBody() {
     })
       .then((response) => response.json())
       .then((data) => {
-        setTableData(data.row_data);
+        // setTableData(data.row_data);
+        setTables(data.tables)
         setLoading(false);
       })
       .catch((error) => {
@@ -48,7 +51,8 @@ function SearchBody() {
         <div className="custom-gap"></div>
         
         <div>
-          <TableComponent data={tableData} />
+          {/* <TableComponent data={tableData} /> */}
+          <MultipleTableShow tables={tables}/>
         </div>
       </div>
     </>

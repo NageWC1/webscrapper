@@ -105,6 +105,36 @@ def identify_data_types_auto( threshold=0.9):
         data_types_list.append([column, data_type])
 
     return jsonify({'data_types_list': data_types_list})   
-    
+
+@app.route('/scrape_tables', methods=['POST'])
+def scrape_tables():
+    # Get the URL from the request
+    url =  request.json.get('link')
+
+    try:
+        # Send an HTTP GET request to the URL
+        response = requests.get(url)
+        response.raise_for_status()
+
+        # Parse the HTML content with Beautiful Soup
+        soup = BeautifulSoup(response.text, 'html.parser')
+
+        # Find all the tables on the webpage
+        tables = soup.find_all('table')
+
+        # Extract table data and store in a list
+        table_data = []
+        for table in tables:
+            rows = []
+            for row in table.find_all('tr'):
+                cell_data = [cell.text.strip() for cell in row.find_all('td')]
+                rows.append(cell_data)
+            table_data.append(rows)
+
+        return jsonify({'tables': table_data})
+
+    except Exception as e:
+        return jsonify({'error': str(e)})
+       
 if __name__ == "__main__":
     app.run()
