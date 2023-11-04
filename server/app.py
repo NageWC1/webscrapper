@@ -3,8 +3,9 @@ import requests
 import pandas as pd
 from bs4 import BeautifulSoup
 import json
-app = Flask('__name__', template_folder='../')
 
+app = Flask('__name__', template_folder='../')
+import re
 @app.route('/', methods=['POST', 'GET'])
 def api():
     url =  request.json.get('link')
@@ -131,12 +132,46 @@ def scrape_tables():
                 cell_data = [cell.text.strip() for cell in row.find_all('td')]
                 rows.append(cell_data)
             table_data.append({'headers': headers, 'data': rows})  # Include headers in the response
-
+       
+        # Specify the location for the output JSON file
+        output_file = './../src/components/result/json/output.json'
+        with open(output_file, 'w') as json_file:
+            json.dump({'tables': table_data}, json_file, indent=4)
 
         return jsonify({'tables': table_data})
 
     except Exception as e:
         return jsonify({'error': str(e)})
-       
+
+# New API endpoint to analyze tables and detect data types
+@app.route('/analyze_tables', methods=['POST'])
+def analyze_tables():
+    try:
+        # Get the tables from the request
+        tables = request.json.get('tables')
+
+        # Analyze the data types of columns
+        analyzed_tables = []
+        for table in tables:
+            analyzed_table = []
+            for row in table:
+                analyzed_row = []
+                for cell in row:
+                    # Detect data type (float, number, or string)
+                    data_type = 'string'
+                    if re.match(r'^-?\d+\.?\d*$', cell):  # Match numbers and floats
+                        if '.' in cell:
+                            data_type = 'float'
+                        else:
+                            data_type = 'number'
+                    analyzed_row.append({'value': cell, 'data_type': data_type})
+                analyzed_table.append(analyzed_row)
+            analyzed_tables.append(analyzed_table)
+
+        return jsonify({'analyzed_tables': analyzed_tables})
+
+    except Exception as e:
+        return jsonify({'error': str(e)})
+        
 if __name__ == "__main__":
     app.run()
