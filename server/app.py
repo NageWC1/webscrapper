@@ -44,7 +44,7 @@ def api():
     print(row_data)
     return jsonify({'row_data': row_data})
 
-def data_cleaning(dataframe):
+def data_cleaning(dataframe,count):
     # Replace missing values with NaN
     dataframe = dataframe.fillna(pd.NA)
     
@@ -59,8 +59,8 @@ def data_cleaning(dataframe):
     dataframe[string_columns] = dataframe[string_columns].apply(lambda x: x.str.strip() if x.dtype == "object" else x)
     
     # Add more data cleaning steps as needed
-    dataframe.to_csv('./../src/components/result/data.csv', index=False)
-    dataframe.to_excel('./../src/components/result/data.xlsx', index=False)
+    dataframe.to_csv('./../src/components/result/csv/data table'+{count}+'.csv', index=False)
+    dataframe.to_excel('./../src/components/result/excel/data table'+{count}+'.xlsx', index=False)
     return dataframe
 
 @app.route('/data_types', methods=['GET'])
@@ -126,10 +126,12 @@ def scrape_tables():
         table_data = []
         for table in tables:
             rows = []
+            headers = [header.text.strip() for header in table.find_all('th')]  # Extract table headers
             for row in table.find_all('tr'):
                 cell_data = [cell.text.strip() for cell in row.find_all('td')]
                 rows.append(cell_data)
-            table_data.append(rows)
+            table_data.append({'headers': headers, 'data': rows})  # Include headers in the response
+
 
         return jsonify({'tables': table_data})
 

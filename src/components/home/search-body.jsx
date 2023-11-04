@@ -50,7 +50,7 @@ function SearchBody() {
 
         <div className="custom-gap"></div>
         
-        <div>
+        <div className="container">
           {/* <TableComponent data={tableData} /> */}
           <MultipleTableShow tables={tables}/>
         </div>

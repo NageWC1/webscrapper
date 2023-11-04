@@ -4,14 +4,14 @@ import excelF from '../result/data.xlsx'
 
 function MultipleTableShow({ tables }) {
   return (
-    <div>
-      <div>
+
+      <div >
         {tables && tables.length > 0 ? (
           <div>
             <h2>Scraped Tables</h2>
 
             {tables.map((table, index) => (
-              <div key={index}>
+              <div key={index} style={{marginBottom:'8rem'}}>
                 <h3>Table {index + 1}</h3>
                 <span className="description-text-for-download-buttns">
                   To Download Cleaned CSV or Excel files of extracted table,
@@ -30,22 +30,30 @@ function MultipleTableShow({ tables }) {
                   </a>
                 </div>
                 <table className="table table-striped">
-                  <tbody>
-                    {table.map((row, rowIndex) => (
-                      <tr key={rowIndex}>
-                        {row.map((cell, cellIndex) => (
-                          <td key={cellIndex}>{cell}</td>
-                        ))}
-                      </tr>
+
+                  <thead>
+                <tr>
+                    {table.headers.map((header, headerIndex) => (
+                        <th key={headerIndex}>{header}</th>
                     ))}
-                  </tbody>
+                </tr>
+            </thead>
+            <tbody>
+                {table.data.map((row, rowIndex) => (
+                    <tr key={rowIndex}>
+                        {row.map((cell, cellIndex) => (
+                            <td key={cellIndex}>{cell}</td>
+                        ))}
+                    </tr>
+                ))}
+            </tbody>
                 </table>
               </div>
             ))}
           </div>
         ) : null}
       </div>
-    </div>
+
   );
 }
 
