@@ -1,6 +1,7 @@
 from flask import Flask, request , jsonify
 import requests
 import pandas as pd
+import matplotlib.pyplot as plt
 from bs4 import BeautifulSoup
 import json
 
@@ -189,8 +190,8 @@ def get_data_types():
     with open('./../src/components/result/json/output.json', 'r') as file:
             data = json.load(file)
     analyzed_tables = identify_data_types(data)
-    
     return jsonify({'analyzed_tables': analyzed_tables})
+
 
 # New API endpoint to analyze tables and detect data types
 @app.route('/analyze_tables', methods=['POST'])
