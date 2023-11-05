@@ -111,7 +111,7 @@ def identify_data_types_auto( threshold=0.9):
 def scrape_tables():
     # Get the URL from the request
     url =  request.json.get('link')
-
+    print(url)
     try:
         # Send an HTTP GET request to the URL
         response = requests.get(url)
@@ -135,13 +135,62 @@ def scrape_tables():
        
         # Specify the location for the output JSON file
         output_file = './../src/components/result/json/output.json'
-        with open(output_file, 'w') as json_file:
-            json.dump({'tables': table_data}, json_file, indent=4)
-
+        save_table_as_json(table_data, output_file)
+        
         return jsonify({'tables': table_data})
 
     except Exception as e:
         return jsonify({'error': str(e)})
+
+def save_table_as_json(table_data, filename):
+    try:
+        with open(filename, 'w') as json_file:
+            json.dump({'tables': table_data}, json_file, indent=4)
+        return True
+    except Exception as e:
+        return str(e)
+
+def identify_data_types(data):
+    analyzed_tables = []
+
+    for table in data['tables']:
+        headers = table.get("headers", [])  # Use get method to provide an empty list if headers are missing
+        table_data = table.get("data", [])  # Use get method to provide an empty list if data is missing
+
+        if len(headers) == 0 or len(table_data) == 0:
+            continue  # Skip tables with missing headers or data
+
+        analyzed_table = []
+        analyzed_table.append(["Column Name", "Data Type"])  # Header row
+
+        for column_index, header in enumerate(headers):
+            data_type = identify_data_type(table_data, column_index)
+            analyzed_table.append([header, data_type])
+
+        analyzed_tables.append(analyzed_table)
+
+    return analyzed_tables
+
+def identify_data_type(table_data, column_index):
+    # Placeholder data type identification logic (you should replace this)
+    data_type = "string"
+    for row in table_data:
+        if len(row) > column_index:
+            cell = row[column_index]
+            if re.match(r'^-?\d+\.?\d*$', cell):  # Match numbers and floats
+                if '.' in cell:
+                    data_type = "float"
+                else:
+                    data_type = "number"
+    return data_type
+
+@app.route('/identify_data_types', methods=['GET'])
+def get_data_types():
+    with open('./../src/components/result/json/output.json', 'r') as file:
+            data = json.load(file)
+    analyzed_tables = identify_data_types(data)
+    
+    return jsonify({'analyzed_tables': analyzed_tables})
 
 # New API endpoint to analyze tables and detect data types
 @app.route('/analyze_tables', methods=['POST'])

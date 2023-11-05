@@ -32,8 +32,8 @@ function SearchBody() {
       },[]);
   };
   return (
-    <>
-      <div className="search-body-wrapper">
+    <div style={{marginLeft:'3rem',marginRight:'1rem'}}>
+      <div className="search-body-wrapper ">
         <form>
           <input
             placeholder="Enter the web link.... https://www/example.com"
@@ -50,12 +50,12 @@ function SearchBody() {
 
         <div className="custom-gap"></div>
         
-        <div className="container">
+        <div >
           {/* <TableComponent data={tableData} /> */}
           <MultipleTableShow tables={tables}/>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

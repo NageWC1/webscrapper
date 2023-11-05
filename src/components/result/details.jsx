@@ -8,30 +8,48 @@ import PrintDataType from "./print-data-types";
 import "../../styles/print-table.css";
 function Details() {
   const [data, setData] = useState([]);
+  const [analyzedTables, setAnalyzedTables] = useState([]);
 
   useEffect(() => {
-    fetch("/data_types")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
+    fetch("/identify_data_types")
+      .then((response) => response.json())
       .then((data) => {
-        setData(data.data_types_list);
+        setAnalyzedTables(data.analyzed_tables);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, []); // The empty dependency array ensures this effect runs once on component mount
+  }, []);
 
   return (
-    <div >
+    <div>
       <NavBar />
       <div className="home-body">
         <SideBar />
         <div className="table-container">
-          <PrintDataType data={data} />
+          <div>
+            {analyzedTables.map((table, index) => (
+              <div key={index}>
+                <h2>Table {index + 1}</h2>
+                <table className="table table-dark table-hover">
+                  <thead>
+                    {table[0].map((header, headerIndex) => (
+                      <th key={headerIndex}>{header}</th>
+                    ))}
+                  </thead>
+                  <tbody>
+                    {table.slice(1).map((row, rowIndex) => (
+                      <tr key={rowIndex}>
+                        {row.map((cell, cellIndex) => (
+                          <td key={cellIndex}>{cell}</td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

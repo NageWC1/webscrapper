@@ -1,8 +1,10 @@
+
+
 .side-bar-wrapper {
   position: sticky;
   top: 0rem;
   height: 100vh;
-  width: 15%;
+  width: 20%;
   background-color: #162d5d;
 }
 
